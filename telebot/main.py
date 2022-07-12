@@ -27,19 +27,19 @@ async def reg_msg(message: types.Message):
     await message.answer(data)
 
 
-@dp.message_handler(content_types=['text'])
-async def reg_msg(message: types.Message):
-    """start registration"""
-    data = Director(message)
-    print('Step ID now:', data.step_id)
-    if data.step_id == 6:
-        keyboard = types.InlineKeyboardMarkup()
-        keyboard.add(types.InlineKeyboardButton(text='Синие \U0001F537', callback_data='blue'))
-        keyboard.add(types.InlineKeyboardButton(text='Желтые \U0001F536', callback_data='yellow'))
-        keyboard.add(types.InlineKeyboardButton(text='Любая', callback_data='all'))
-        await message.answer(text=data.choice_answer(), reply_markup=keyboard)
-    else:
-        await message.answer(data.choice_answer())
+# @dp.message_handler(content_types=['text'])
+# async def reg_msg(message: types.Message):
+#     """start registration"""
+#     data = Director(message)
+#     print('Step ID now:', data.step_id)
+#     if data.step_id == 6:
+#         keyboard = types.InlineKeyboardMarkup()
+#         keyboard.add(types.InlineKeyboardButton(text='Синие \U0001F537', callback_data='blue'))
+#         keyboard.add(types.InlineKeyboardButton(text='Желтые \U0001F536', callback_data='yellow'))
+#         keyboard.add(types.InlineKeyboardButton(text='Любая', callback_data='all'))
+#         await message.answer(text=data.choice_answer(), reply_markup=keyboard)
+#     else:
+#         await message.answer(data.choice_answer())
 
 
 @dp.callback_query_handler(text='blue')
@@ -118,36 +118,53 @@ class QuestsDb(DatabasePSQL):
         super(QuestsDb, self).__init__()
         self.table_name = 'cloud_quests'
 
-    def select_quest_list_from_db(self, side=0):
-        conditions = f'mark = 1 AND side = {side}'
+    def select_quest_list_from_db(self):
+        conditions = f'mark = 1'
         data = self.select_in_table(self.table_name, '*', conditions)
         if data:
-            data_for_message = self.formate_data_for_telegram(data, side)
+            data_for_message = self.formate_data_for_telegram(data)
             return data_for_message
         else:
             return 'Активных заданий нет'
 
-    def formate_data_for_telegram(self, data_list, side):
+    def formate_data_for_telegram(self, data_list):
         message = ""
         for data in data_list:
-            if side == 0:
-                one_quest = f"Задание № <b>{data[9]}</b>\n" \
-                            f"<b><u>{data[1]}</u></b>\n" \
-                            f"Начало:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n" \
-                            f"Окончание:  <em><u>{data[3].strftime('%H:%M')}</u></em>\n\n" \
-                            f"Для стороны синих:\n" \
-                            f"\U0001F537{data[4]}\U0001F537\n\n" \
-                            f"Для стороны желтых:\n" \
-                            f"\U0001F536{data[5]}\U0001F536\n\n" \
-                            f"Награда:\n" \
-                            f"<u>{data[6]}</u>\n" \
-                            f"{'.'*60}\n"
-            else:
-                one_quest = f"Задание № <b>{data[9]}</b>\n" \
-                            f"<b><u>{data[1]}</u></b>\n\n" \
-                            f"{data[4]}\n\n" \
-                            f"Награда:\n" \
-                            f"<u>{data[6]}</u>\n"
+            one_quest = f"<b><u>{data[1]}</u></b>\n" \
+                        f"Начало:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n" \
+                        f"Окончание:  <em><u>{data[3].strftime('%H:%M')}</u></em>\n\n" \
+                        f"Для стороны синих:\n" \
+                        f"\U0001F537{data[4]}\U0001F537\n\n" \
+                        f"Для стороны желтых:\n" \
+                        f"\U0001F536{data[5]}\U0001F536\n\n" \
+                        f"Награда:\n" \
+                        f"<u>{data[6]}</u>\n" \
+                        f"{'.'*60}\n"
+            message += one_quest
+        return message
+
+
+class ActQuestsDb(DatabasePSQL):
+    def __init__(self):
+        super(ActQuestsDb, self).__init__()
+        self.table_name = 'cloud_actquests'
+
+    def select_quest_list_from_db(self, side):
+        conditions = f'mark = 1 AND side = {side}'
+        data = self.select_in_table(self.table_name, 'name, text, point', conditions)
+        if data:
+            data_for_message = self.formate_data_for_telegram(data)
+            return data_for_message
+        else:
+            return 'Активных заданий нет'
+
+    def formate_data_for_telegram(self, data_list):
+        message = ""
+        for data in data_list:
+            one_quest = f"<b><u>{data[1]}</u></b>\n\n" \
+                        f"{data[4]}\n\n" \
+                        f"Награда:\n" \
+                        f"<u>{data[6]}</u>\n"
             message += one_quest
         return message
 

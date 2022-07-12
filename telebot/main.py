@@ -56,11 +56,11 @@ async def reg_msg(message: types.Message):
         await message.answer(text=data.choice_answer(), reply_markup=keyboard)
     elif data.step_id == 100:
         ActQuestsDb().activate_quest(message.text)
-        data.step_id.delete_step_row(message.chat.id)
+        data.step_db.delete_step_row(message.chat.id)
         await message.answer(f"Квест №{message.text} активирован")
     elif data.step_id == 200:
         ActQuestsDb().deactivate_quest(message.text)
-        data.step_id.delete_step_row(message.chat.id)
+        data.step_db.delete_step_row(message.chat.id)
         await message.answer(f"Квест №{message.text} ДЕактивирован")
     else:
         await message.answer(data.choice_answer())

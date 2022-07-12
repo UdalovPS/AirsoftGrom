@@ -151,7 +151,7 @@ class ActQuestsDb(DatabasePSQL):
 
     def select_quest_list_from_db(self, side):
         conditions = f'mark = 1 AND side = {side}'
-        data = self.select_in_table(self.table_name, 'name, text, point', conditions)
+        data = self.select_in_table(self.table_name, 'name, text, points', conditions)
         if data:
             data_for_message = self.formate_data_for_telegram(data)
             return data_for_message

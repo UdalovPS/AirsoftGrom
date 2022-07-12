@@ -120,7 +120,8 @@ class QuestsDb(DatabasePSQL):
 
     def select_quest_list_from_db(self):
         conditions = f'mark = 1'
-        data = self.select_in_table(self.table_name, '*', conditions)
+        fields = "name, time_start, time_end, blue_text, yellow_text, points"
+        data = self.select_in_table(self.table_name, '', conditions)
         if data:
             data_for_message = self.formate_data_for_telegram(data)
             return data_for_message
@@ -130,15 +131,15 @@ class QuestsDb(DatabasePSQL):
     def formate_data_for_telegram(self, data_list):
         message = ""
         for data in data_list:
-            one_quest = f"<b><u>{data[1]}</u></b>\n" \
-                        f"Начало:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n" \
-                        f"Окончание:  <em><u>{data[3].strftime('%H:%M')}</u></em>\n\n" \
+            one_quest = f"<b><u>{data[0]}</u></b>\n" \
+                        f"Начало:  <em><u>{data[1].strftime('%H:%M')}</u></em>\n" \
+                        f"Окончание:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n\n" \
                         f"Для стороны синих:\n" \
-                        f"\U0001F537{data[4]}\U0001F537\n\n" \
+                        f"\U0001F537{data[3]}\U0001F537\n\n" \
                         f"Для стороны желтых:\n" \
-                        f"\U0001F536{data[5]}\U0001F536\n\n" \
+                        f"\U0001F536{data[4]}\U0001F536\n\n" \
                         f"Награда:\n" \
-                        f"<u>{data[6]}</u>\n" \
+                        f"<u>{data[5]}</u>\n" \
                         f"{'.'*60}\n"
             message += one_quest
         return message

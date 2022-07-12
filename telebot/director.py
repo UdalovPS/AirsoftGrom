@@ -126,7 +126,10 @@ class PersonDb(DatabasePSQL):
 
     def update_personal_data(self, pk, field, text):
         conditions = f"id = {pk}"
-        field_value = f"{field} = '{text.lower()}'"
+        if type(text) == 'String':
+            field_value = f"{field} = '{text.lower()}'"
+        else:
+            field_value = f"{field} = '{text}'"
         self.update_fields(self.table_name, field_value, conditions)
 
     def select_reg_data(self, chat_id):

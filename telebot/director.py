@@ -44,9 +44,9 @@ class Director:
         self.step_db.delete_step_row(self.message.chat.id)
         return "Заявка зарегистрирована"
 
-    def start(self):
+    def start(self, step_id):
         self.step_db.delete_step_row(self.message.chat.id)
-        self.step_db.insert_new_dialogs(self.message.chat.id)
+        self.step_db.insert_new_dialogs(self.message.chat.id, step_id)
         return self.choice_answer()
 
     def select_step_id(self):
@@ -89,7 +89,12 @@ class Director:
             self.person_db.update_personal_data(self.person_db.select_max_pk(self.message.chat.id),
                                                 'sity', self.message.text)
             return "Выберите сторону"
-
+        elif self.step_id == 100:
+            """activate dialog message"""
+            return "Введите номер квеста который необходимо активировать"
+        elif self.step_id == 200:
+            """deactivate dialog message"""
+            return "Введите номер квеста который необходимо ДЕактивировать"
 
 class StepDB(DatabasePSQL):
     def __init__(self):
@@ -108,8 +113,8 @@ class StepDB(DatabasePSQL):
         conditions = f"chat_id = {chat_id}"
         self.delete_data_from_table(self.table_name, conditions)
 
-    def insert_new_dialogs(self, chat_id):
-        self.insert_data_in_table(self.table_name, 'step_id, chat_id', f"(1,{chat_id})")
+    def insert_new_dialogs(self, chat_id, step_id):
+        self.insert_data_in_table(self.table_name, 'step_id, chat_id', f"({step_id},{chat_id})")
 
     def update_step_id(self, chat_id, step_id):
         conditions = f"chat_id = {chat_id}"

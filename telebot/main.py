@@ -12,10 +12,26 @@ dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
 
 
+@dp.message_handler(commands='act')
+async def reg_msg(message: types.Message):
+    """start dialog for activation quest"""
+    data = Director(message).start(step_id=100)
+    data = Director(message)
+    await message.answer(data.choice_answer())
+
+
+@dp.message_handler(commands='deact')
+async def reg_msg(message: types.Message):
+    """start dialog for deactivation quest"""
+    data = Director(message).start(step_id=200)
+    data = Director(message)
+    await message.answer(data.choice_answer())
+
+
 @dp.message_handler(commands='reg')
 async def reg_msg(message: types.Message):
     """start registration"""
-    data = Director(message).start()
+    data = Director(message).start(step_id=1)
     data = Director(message)
     await message.answer(data.choice_answer())
 
@@ -27,19 +43,25 @@ async def reg_msg(message: types.Message):
     await message.answer(data)
 
 
-# @dp.message_handler(content_types=['text'])
-# async def reg_msg(message: types.Message):
-#     """start registration"""
-#     data = Director(message)
-#     print('Step ID now:', data.step_id)
-#     if data.step_id == 6:
-#         keyboard = types.InlineKeyboardMarkup()
-#         keyboard.add(types.InlineKeyboardButton(text='Синие \U0001F537', callback_data='blue'))
-#         keyboard.add(types.InlineKeyboardButton(text='Желтые \U0001F536', callback_data='yellow'))
-#         keyboard.add(types.InlineKeyboardButton(text='Любая', callback_data='all'))
-#         await message.answer(text=data.choice_answer(), reply_markup=keyboard)
-#     else:
-#         await message.answer(data.choice_answer())
+@dp.message_handler(content_types=['text'])
+async def reg_msg(message: types.Message):
+    """start registration"""
+    data = Director(message)
+    print('Step ID now:', data.step_id)
+    if data.step_id == 6:
+        keyboard = types.InlineKeyboardMarkup()
+        keyboard.add(types.InlineKeyboardButton(text='Синие \U0001F537', callback_data='blue'))
+        keyboard.add(types.InlineKeyboardButton(text='Желтые \U0001F536', callback_data='yellow'))
+        keyboard.add(types.InlineKeyboardButton(text='Любая', callback_data='all'))
+        await message.answer(text=data.choice_answer(), reply_markup=keyboard)
+    elif data.step_id == 100:
+        ActQuestsDb().activate_quest(message.text)
+        await message.answer(f"Квест №{message.text} активирован")
+    elif data.step_id == 200:
+        ActQuestsDb().deactivate_quest(message.text)
+        await message.answer(f"Квест №{message.text} ДЕактивирован")
+    else:
+        await message.answer(data.choice_answer())
 
 
 @dp.callback_query_handler(text='blue')
@@ -169,6 +191,15 @@ class ActQuestsDb(DatabasePSQL):
             message += one_quest
         return message
 
+    def activate_quest(self, quest_number):
+        conditions = f"number = {quest_number}"
+        field_value = f"mark = 1"
+        self.update_fields(self.table_name, field_value, conditions)
+
+    def deactivate_quest(self, quest_number):
+        conditions = f"number = {quest_number}"
+        field_value = f"mark = 2"
+        self.update_fields(self.table_name, field_value, conditions)
 
 class ScoresDb(DatabasePSQL):
     def __init__(self):

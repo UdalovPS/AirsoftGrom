@@ -15,6 +15,8 @@
       <change beforePath="$PROJECT_DIR$/DjangoServer/telebot/config.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/telebot/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/telebot/postgre_sql_orm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/telebot/director.py" beforeDir="false" afterPath="$PROJECT_DIR$/telebot/director.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/telebot/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/telebot/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -65,13 +65,13 @@ async def select_quests_list(call: types.CallbackQuery):
 
 @dp.message_handler(commands='вата')
 async def test_msg(message: types.Message):
-    data = QuestsDb().select_quest_list_from_db(side=1)
+    data = ActQuestsDb().select_quest_list_from_db(side=1)
     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
     await message.answer(data)
 
 @dp.message_handler(commands='мир')
 async def test_msg(message: types.Message):
-    data = QuestsDb().select_quest_list_from_db(side=2)
+    data = ActQuestsDb().select_quest_list_from_db(side=2)
     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
     await message.answer(data)
 

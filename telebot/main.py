@@ -161,10 +161,10 @@ class ActQuestsDb(DatabasePSQL):
     def formate_data_for_telegram(self, data_list):
         message = ""
         for data in data_list:
-            one_quest = f"<b><u>{data[1]}</u></b>\n\n" \
-                        f"{data[4]}\n\n" \
+            one_quest = f"<b><u>{data[0]}</u></b>\n\n" \
+                        f"{data[1]}\n\n" \
                         f"Награда:\n" \
-                        f"<u>{data[6]}</u>\n"
+                        f"<u>{data[2]}</u>\n"
             message += one_quest
         return message
 

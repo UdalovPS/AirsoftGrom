@@ -15,15 +15,21 @@ class Director:
         if data:
             for list in data:
                 if list[6] == None or list[6] == 1:
-                    pay_status = 'Не оплачено'
+                    pay_status = 'не оплачено'
                 else:
-                    pay_status = 'Оплачено'
+                    pay_status = 'оплачено'
+                if list[5] == 2:
+                    side = 'синие'
+                elif list[5] == 3:
+                    side = 'желтые'
+                else:
+                    side = 'любая'
                 one_person = f"Фамилия: <b>{list[0]}</b>\n" \
                              f"Имя: <b>{list[1]}</b>\n" \
                              f"Отчество: <b>{list[2]}</b>\n" \
                              f"Команда: <b>{list[3]}</b>\n" \
                              f"Город: <b>{list[4]}</b>\n" \
-                             f"Сторона: <b>{list[5]}</b>\n" \
+                             f"Сторона: <b>{side}</b>\n" \
                              f"Статус оплаты: <b>{pay_status}</b>\n{'.'*60}\n"
                 text += one_person
             return text

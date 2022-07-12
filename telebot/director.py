@@ -126,7 +126,7 @@ class PersonDb(DatabasePSQL):
 
     def update_personal_data(self, pk, field, text):
         conditions = f"id = {pk}"
-        if type(text) == 'String':
+        if type(text) == str:
             field_value = f"{field} = '{text.lower()}'"
         else:
             field_value = f"{field} = '{text}'"

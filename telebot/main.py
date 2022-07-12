@@ -121,7 +121,7 @@ class QuestsDb(DatabasePSQL):
     def select_quest_list_from_db(self):
         conditions = f'mark = 1'
         fields = "name, time_start, time_end, blue_text, yellow_text, points"
-        data = self.select_in_table(self.table_name, '', conditions)
+        data = self.select_in_table(self.table_name, fields, conditions)
         if data:
             data_for_message = self.formate_data_for_telegram(data)
             return data_for_message

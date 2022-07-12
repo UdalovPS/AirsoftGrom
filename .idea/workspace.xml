@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/cloud/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/cloud/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/cloud/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/cloud/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/cloud/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/cloud/urls.py" afterDir="false" />
@@ -40,11 +41,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "/home/udalovps/Python/Telebots/SpartaUrayBot"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;/home/udalovps/Python/Telebots/SpartaUrayBot&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/local_server" />

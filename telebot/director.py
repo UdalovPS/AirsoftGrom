@@ -122,11 +122,11 @@ class PersonDb(DatabasePSQL):
         return data[0][0]
 
     def insert_new_person(self, chat_id,  text):
-        self.insert_data_in_table(self.table_name, 'last_name, chat_id', f"('{text}', {chat_id})")
+        self.insert_data_in_table(self.table_name, 'last_name, chat_id', f"('{text.lower()}', {chat_id})")
 
     def update_personal_data(self, pk, field, text):
         conditions = f"id = {pk}"
-        field_value = f"{field} = '{text}'"
+        field_value = f"{field} = '{text.lower()}'"
         self.update_fields(self.table_name, field_value, conditions)
 
     def select_reg_data(self, chat_id):

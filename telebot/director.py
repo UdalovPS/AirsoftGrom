@@ -30,7 +30,8 @@ class Director:
                              f"Команда: <b>{list[3]}</b>\n" \
                              f"Город: <b>{list[4]}</b>\n" \
                              f"Сторона: <b>{side}</b>\n" \
-                             f"Статус оплаты: <b>{pay_status}</b>\n{'.'*60}\n"
+                             f"Статус оплаты: <b>{pay_status}</b>\n" \
+                             f"Идентификационный номер: <b>{list[7]}</b>{'.'*60}\n"
                 text += one_person
             return text
         else:
@@ -145,7 +146,7 @@ class PersonDb(DatabasePSQL):
 
     def select_reg_data(self, chat_id):
         conditions = f"chat_id = {chat_id}"
-        fields = "last_name, first_name, patronymic, team, sity, side, pay_status"
+        fields = "last_name, first_name, patronymic, team, sity, side, pay_status, id"
         data = self.select_in_table(self.table_name, fields, conditions)
         if data:
             return data

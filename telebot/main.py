@@ -203,6 +203,7 @@ class ActQuestsDb(DatabasePSQL):
         field_value = f"mark = 2"
         self.update_fields(self.table_name, field_value, conditions)
 
+
 class ScoresDb(DatabasePSQL):
     def __init__(self):
         super(ScoresDb, self).__init__()

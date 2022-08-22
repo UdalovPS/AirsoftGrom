@@ -28,63 +28,63 @@ async def reg_msg(message: types.Message):
     await message.answer(data.choice_answer())
 
 
-@dp.message_handler(commands='reg')
-async def reg_msg(message: types.Message):
-    """start registration"""
-    data = Director(message).start(step_id=1)
-    data = Director(message)
-    await message.answer(data.choice_answer())
+# @dp.message_handler(commands='reg')
+# async def reg_msg(message: types.Message):
+#     """start registration"""
+#     data = Director(message).start(step_id=1)
+#     data = Director(message)
+#     await message.answer(data.choice_answer())
 
 
-@dp.message_handler(commands='check')
-async def reg_msg(message: types.Message):
-    """cheak regisntations"""
-    data = Director(message).check_registration()
-    await message.answer(data)
+# @dp.message_handler(commands='check')
+# async def reg_msg(message: types.Message):
+#     """cheak regisntations"""
+#     data = Director(message).check_registration()
+#     await message.answer(data)
 
 
-@dp.message_handler(content_types=['text'])
-async def reg_msg(message: types.Message):
-    """start registration"""
-    data = Director(message)
-    print('Step ID now:', data.step_id)
-    if data.step_id == 6:
-        keyboard = types.InlineKeyboardMarkup()
-        keyboard.add(types.InlineKeyboardButton(text='Синие \U0001F537', callback_data='blue'))
-        keyboard.add(types.InlineKeyboardButton(text='Желтые \U0001F536', callback_data='yellow'))
-        keyboard.add(types.InlineKeyboardButton(text='Любая', callback_data='all'))
-        await message.answer(text=data.choice_answer(), reply_markup=keyboard)
-    elif data.step_id == 100:
-        ActQuestsDb().activate_quest(message.text)
-        data.step_db.delete_step_row(message.chat.id)
-        await message.answer(f"Квест №{message.text} активирован")
-    elif data.step_id == 200:
-        ActQuestsDb().deactivate_quest(message.text)
-        data.step_db.delete_step_row(message.chat.id)
-        await message.answer(f"Квест №{message.text} ДЕактивирован")
-    else:
-        await message.answer(data.choice_answer())
+# @dp.message_handler(content_types=['text'])
+# async def reg_msg(message: types.Message):
+#     """start registration"""
+#     data = Director(message)
+#     print('Step ID now:', data.step_id)
+#     if data.step_id == 6:
+#         keyboard = types.InlineKeyboardMarkup()
+#         keyboard.add(types.InlineKeyboardButton(text='Синие \U0001F537', callback_data='blue'))
+#         keyboard.add(types.InlineKeyboardButton(text='Желтые \U0001F536', callback_data='yellow'))
+#         keyboard.add(types.InlineKeyboardButton(text='Любая', callback_data='all'))
+#         await message.answer(text=data.choice_answer(), reply_markup=keyboard)
+#     elif data.step_id == 100:
+#         ActQuestsDb().activate_quest(message.text)
+#         data.step_db.delete_step_row(message.chat.id)
+#         await message.answer(f"Квест №{message.text} активирован")
+#     elif data.step_id == 200:
+#         ActQuestsDb().deactivate_quest(message.text)
+#         data.step_db.delete_step_row(message.chat.id)
+#         await message.answer(f"Квест №{message.text} ДЕактивирован")
+#     else:
+#         await message.answer(data.choice_answer())
 
 
-@dp.callback_query_handler(text='blue')
-async def select_quests_list(call: types.CallbackQuery):
-    data = Director(call.message).update_side(2)
-    await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-    await call.message.answer(data)
+# @dp.callback_query_handler(text='blue')
+# async def select_quests_list(call: types.CallbackQuery):
+#     data = Director(call.message).update_side(2)
+#     await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+#     await call.message.answer(data)
 
 
-@dp.callback_query_handler(text='yellow')
-async def select_quests_list(call: types.CallbackQuery):
-    data = Director(call.message).update_side(3)
-    await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-    await call.message.answer(data)
+# @dp.callback_query_handler(text='yellow')
+# async def select_quests_list(call: types.CallbackQuery):
+#     data = Director(call.message).update_side(3)
+#     await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+#     await call.message.answer(data)
 
 
-@dp.callback_query_handler(text='all')
-async def select_quests_list(call: types.CallbackQuery):
-    data = Director(call.message).update_side(1)
-    await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-    await call.message.answer(data)
+# @dp.callback_query_handler(text='all')
+# async def select_quests_list(call: types.CallbackQuery):
+#     data = Director(call.message).update_side(1)
+#     await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+#     await call.message.answer(data)
 
 
 @dp.message_handler(commands='вата')
@@ -108,7 +108,7 @@ async def message_with_buttons(message: types.Message):
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(types.InlineKeyboardButton(text='Активные задания \U0001F4CB', callback_data='quests'))
     keyboard.add(types.InlineKeyboardButton(text='Счет в игре \U0001F4DF', callback_data='score'))
-    keyboard.add(types.InlineKeyboardButton(text='Информацию по точкам \U0001F4E1', callback_data='point'))
+    # keyboard.add(types.InlineKeyboardButton(text='Информацию по точкам \U0001F4E1', callback_data='point'))
     keyboard.add(types.InlineKeyboardButton(text='Расписание игры \U0001F55B', callback_data='time'))
     await message.answer(text='Что хочешь узнать, боец? \U0001F60E', reply_markup=keyboard)
 
@@ -124,11 +124,11 @@ async def select_score_list(call: types.CallbackQuery):
     await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
     await call.message.answer(data)
 
-@dp.callback_query_handler(text='point')
-async def select_score_list(call: types.CallbackQuery):
-    data = PointDb().select_point_list_from_db()
-    await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-    await call.message.answer(data)
+# @dp.callback_query_handler(text='point')
+# async def select_score_list(call: types.CallbackQuery):
+#     data = PointDb().select_point_list_from_db()
+#     await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
+#     await call.message.answer(data)
 
 @dp.callback_query_handler(text='time')
 async def select_score_list(call: types.CallbackQuery):

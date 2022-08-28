@@ -188,7 +188,7 @@ class QuestsDb(DatabasePSQL):
         else:
             fields = "yellow_text"
         data = self.select_in_table(self.table_name, fields, conditions)
-        return data
+        return data[0][0]
 
 class ActQuestsDb(DatabasePSQL):
     def __init__(self):

@@ -314,16 +314,16 @@ class ScoresDb(DatabasePSQL):
         for data in data_list:
             one_score = f"Задание №:<b>{data[0]}</b>\n" \
                         f"<u><b>{data[1]}</b></u>\n" \
-                        f"Сторона синих: <b><u><em>{data[2]}</em></u></b> |\n| " \
-                        f"Сторона желтых: <b><u><em>{data[3]}</em></u></b>\n" \
-                        f"{'.'*60}\n"
+                        f"\U0001F537Сторона синих: <b><u><em>{data[2]}</em></u></b> \U0001F537|\n| " \
+                        f"\U0001F536Сторона желтых: <b><u><em>{data[3]}</em></u></b>\U0001F536\n" \
+                        f"{'.'*20}\n"
             message += one_score
             total_blue += data[2]
             total_yellow += data[3]
         total_str = f"Общий счет:\n" \
-                    f"Сторона синих: <b><u><em>{total_blue}</em></u></b> |\n| " \
-                    f"Сторона желтых: <b><u><em>{total_yellow}</em></u></b>\n" \
-                    f"{'.'*60}\n"
+                    f"\U0001F537Сторона синих: <b><u><em>{total_blue}</em></u></b> \U0001F537|\n| " \
+                    f"\U0001F536Сторона желтых: <b><u><em>{total_yellow}</em></u></b>\U0001F536\n" \
+                    f"{'.'*20}\n"
         return total_str + message
 
 

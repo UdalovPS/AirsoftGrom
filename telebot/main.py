@@ -15,13 +15,13 @@ logging.basicConfig(level=logging.INFO)
 @dp.message_handler(commands='фа5083')
 async def reg_msg(message: types.Message):
     """blue start point for quest"""
-    text = QuestsDb().select_text_for_nrf_quest(1, message.text[2:])
+    text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[2:]))
     await message.answer(text)
 
 @dp.message_handler(commands='ми5083')
 async def reg_msg(message: types.Message):
     """yellow start point for quest"""
-    text = QuestsDb().select_text_for_nrf_quest(1, message.text[2:])
+    text = QuestsDb().select_text_for_nrf_quest(2, int(message.text[2:]))
     await message.answer(text)
 
 
@@ -188,7 +188,7 @@ class QuestsDb(DatabasePSQL):
         else:
             fields = "yellow_text"
         data = self.select_in_table(self.table_name, fields, conditions)
-        return data[0][0]
+        return data[0]
 
 class ActQuestsDb(DatabasePSQL):
     def __init__(self):

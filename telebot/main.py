@@ -237,9 +237,9 @@ class QuestsDb(DatabasePSQL):
                         f"Начало:  <em><u>{data[1].strftime('%H:%M')}</u></em>\n" \
                         f"Окончание:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n\n" \
                         f"\U0001F537Для стороны <b>СИНИХ</b>:\n" \
-                        f"{data[3]}\U0001F537\n\n" \
+                        f"{data[3]}\n\n" \
                         f"\U0001F536Для стороны <b>ЖЕЛТЫХ</b>:\n" \
-                        f"{data[4]}\U0001F536\n\n" \
+                        f"{data[4]}\n\n" \
                         f"Награда:\n" \
                         f"<u>{data[5]}</u>\n" \
                         f"{'.'*20}\n"
@@ -313,15 +313,15 @@ class ScoresDb(DatabasePSQL):
         message = ""
         for data in data_list:
             one_score = f"<u><b>{data[1]}</b></u>\n" \
-                        f"\U0001F537Сторона синих: <b><u><em>{data[2]}</em></u></b> \U0001F537\n " \
-                        f"\U0001F536Сторона желтых: <b><u><em>{data[3]}</em></u></b>\U0001F536\n" \
+                        f"\U0001F537Сторона синих: <b><u><em>{data[2]}</em></u></b>\n " \
+                        f"\U0001F536Сторона желтых: <b><u><em>{data[3]}</em></u></b>\n" \
                         f"{'.'*20}\n"
             message += one_score
             total_blue += data[2]
             total_yellow += data[3]
         total_str = f"Общий счет:\n" \
-                    f"\U0001F537Сторона синих: <b><u><em>{total_blue}</em></u></b> \U0001F537\n " \
-                    f"\U0001F536Сторона желтых: <b><u><em>{total_yellow}</em></u></b>\U0001F536\n" \
+                    f"\U0001F537Сторона синих: <b><u><em>{total_blue}</em></u></b>\n " \
+                    f"\U0001F536Сторона желтых: <b><u><em>{total_yellow}</em></u></b>\n" \
                     f"{'.'*20}\n"
         return total_str + message
 

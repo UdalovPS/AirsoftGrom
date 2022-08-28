@@ -381,10 +381,10 @@ class TimeTableDb(DatabasePSQL):
     def format_data_for_telegram(self, data_list):
         message = ""
         for data in data_list:
-            one_score = f"Начало:  <em><u>{data[1].strftime('%H:%M')}</u></em>\n" \
+            one_score = f"ЗАДАЧА: {data[3]}\n" \
+                        f"Начало:  <em><u>{data[1].strftime('%H:%M')}</u></em>\n" \
                         f"Окончание:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n\n" \
-                        f"{data[3]}\n" \
-                        f"{'.'*60}\n"
+                        f"{'.'*20}\n"
             message += one_score
         return message
 

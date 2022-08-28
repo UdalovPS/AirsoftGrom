@@ -238,11 +238,11 @@ class QuestsDb(DatabasePSQL):
                         f"Окончание:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n\n" \
                         f"\U0001F537Для стороны <b>СИНИХ</b>:\n" \
                         f"{data[3]}\U0001F537\n\n" \
-                        f"\U0001F536Для стороны <b>Желтых</b>:\n" \
+                        f"\U0001F536Для стороны <b>ЖЕЛТЫХ</b>:\n" \
                         f"{data[4]}\U0001F536\n\n" \
                         f"Награда:\n" \
                         f"<u>{data[5]}</u>\n" \
-                        f"{'.'*60}\n"
+                        f"{'.'*20}\n"
             message += one_quest
         return message
 

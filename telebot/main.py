@@ -12,6 +12,19 @@ dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
 
 
+@dp.message_handler(commands='фа5083')
+async def reg_msg(message: types.Message):
+    """blue start point for quest"""
+    text = QuestsDb().select_text_for_nrf_quest(1, message.text[2:])
+    await message.answer(text)
+
+@dp.message_handler(commands='ми5083')
+async def reg_msg(message: types.Message):
+    """yellow start point for quest"""
+    text = QuestsDb().select_text_for_nrf_quest(1, message.text[2:])
+    await message.answer(text)
+
+
 @dp.message_handler(commands='act')
 async def reg_msg(message: types.Message):
     """start dialog for activation quest"""
@@ -168,6 +181,14 @@ class QuestsDb(DatabasePSQL):
             message += one_quest
         return message
 
+    def select_text_for_nrf_quest(self, side, number):
+        conditions = f'number = {number}'
+        if side == 1:
+            fields = 'blue_text'
+        else:
+            fields = "yellow_text"
+        data = self.select_in_table(self.table_name, fields, conditions)
+        return data
 
 class ActQuestsDb(DatabasePSQL):
     def __init__(self):

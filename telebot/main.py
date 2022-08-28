@@ -64,7 +64,7 @@ async def reg_msg(message: types.Message):
     await message.answer(text)
 
 
-@dp.message_handler(commands='ми6612')
+@dp.message_handler(commands='фа6612')
 async def reg_msg(message: types.Message):
     """blue point 4"""
     text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))
@@ -77,7 +77,7 @@ async def reg_msg(message: types.Message):
     await message.answer(text)
 
 
-@dp.message_handler(commands='ми3820')
+@dp.message_handler(commands='фа3820')
 async def reg_msg(message: types.Message):
     """blue point 5"""
     text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))

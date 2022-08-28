@@ -236,10 +236,10 @@ class QuestsDb(DatabasePSQL):
             one_quest = f"<b><u>{data[0]}</u></b>\n" \
                         f"Начало:  <em><u>{data[1].strftime('%H:%M')}</u></em>\n" \
                         f"Окончание:  <em><u>{data[2].strftime('%H:%M')}</u></em>\n\n" \
-                        f"Для стороны синих:\n" \
-                        f"\U0001F537{data[3]}\U0001F537\n\n" \
-                        f"Для стороны желтых:\n" \
-                        f"\U0001F536{data[4]}\U0001F536\n\n" \
+                        f"\U0001F537Для стороны <b>СИНИХ</b>:\n" \
+                        f"{data[3]}\U0001F537\n\n" \
+                        f"\U0001F536Для стороны <b>Желтых</b>:\n" \
+                        f"{data[4]}\U0001F536\n\n" \
                         f"Награда:\n" \
                         f"<u>{data[5]}</u>\n" \
                         f"{'.'*60}\n"

@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76f4835c-9d8f-4add-b6d5-d3ff7ed53cab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoServer/airsoft_cloud/airsoft_cloud/urls.py" afterDir="false" />
@@ -16,7 +15,6 @@
       <change beforePath="$PROJECT_DIR$/DjangoServer/telebot/config.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/telebot/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoServer/telebot/postgre_sql_orm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/telebot/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/telebot/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -25,6 +25,71 @@ async def reg_msg(message: types.Message):
     await message.answer(text)
 
 
+@dp.message_handler(commands='фа2012')
+async def reg_msg(message: types.Message):
+    """blue point 1"""
+    text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))
+    await message.answer(text)
+
+@dp.message_handler(commands='ми2012')
+async def reg_msg(message: types.Message):
+    """yellow yellow point 5"""
+    text = QuestsDb().select_text_for_nrf_quest(2, int(message.text[3:]))
+    await message.answer(text)
+
+
+@dp.message_handler(commands='фа9915')
+async def reg_msg(message: types.Message):
+    """blue point 2"""
+    text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))
+    await message.answer(text)
+
+@dp.message_handler(commands='ми9915')
+async def reg_msg(message: types.Message):
+    """yellow yellow point 4"""
+    text = QuestsDb().select_text_for_nrf_quest(2, int(message.text[3:]))
+    await message.answer(text)
+
+
+@dp.message_handler(commands='фа7307')
+async def reg_msg(message: types.Message):
+    """blue point 3"""
+    text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))
+    await message.answer(text)
+
+@dp.message_handler(commands='ми7307')
+async def reg_msg(message: types.Message):
+    """yellow yellow point 3"""
+    text = QuestsDb().select_text_for_nrf_quest(2, int(message.text[3:]))
+    await message.answer(text)
+
+
+@dp.message_handler(commands='ми6612')
+async def reg_msg(message: types.Message):
+    """blue point 4"""
+    text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))
+    await message.answer(text)
+
+@dp.message_handler(commands='ми6612')
+async def reg_msg(message: types.Message):
+    """yellow yellow point 2"""
+    text = QuestsDb().select_text_for_nrf_quest(2, int(message.text[3:]))
+    await message.answer(text)
+
+
+@dp.message_handler(commands='ми3820')
+async def reg_msg(message: types.Message):
+    """blue point 5"""
+    text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))
+    await message.answer(text)
+
+@dp.message_handler(commands='ми3820')
+async def reg_msg(message: types.Message):
+    """yellow yellow point 1"""
+    text = QuestsDb().select_text_for_nrf_quest(2, int(message.text[3:]))
+    await message.answer(text)
+
+
 @dp.message_handler(commands='act')
 async def reg_msg(message: types.Message):
     """start dialog for activation quest"""

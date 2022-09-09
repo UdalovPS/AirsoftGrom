@@ -183,12 +183,22 @@ async def test_msg(message: types.Message):
 
 @dp.message_handler(content_types=['text'])
 async def message_with_buttons(message: types.Message):
-    keyboard = types.InlineKeyboardMarkup()
-    keyboard.add(types.InlineKeyboardButton(text='Активные задания \U0001F4CB', callback_data='quests'))
-    keyboard.add(types.InlineKeyboardButton(text='Счет в игре \U0001F4DF', callback_data='score'))
-    # keyboard.add(types.InlineKeyboardButton(text='Информацию по точкам \U0001F4E1', callback_data='point'))
-    keyboard.add(types.InlineKeyboardButton(text='Расписание игры \U0001F55B', callback_data='time'))
-    await message.answer(text='Что хочешь узнать, боец? \U0001F60E', reply_markup=keyboard)
+    data = Director(message)
+    if data.step_id == 100:
+        ActQuestsDb().activate_quest(message.text)
+        data.step_db.delete_step_row(message.chat.id)
+        await message.answer(f"Квест №{message.text} активирован")
+    elif data.step_id == 200:
+        ActQuestsDb().deactivate_quest(message.text)
+        data.step_db.delete_step_row(message.chat.id)
+        await message.answer(f"Квест №{message.text} ДЕактивирован")
+    else:
+        keyboard = types.InlineKeyboardMarkup()
+        keyboard.add(types.InlineKeyboardButton(text='Активные задания \U0001F4CB', callback_data='quests'))
+        keyboard.add(types.InlineKeyboardButton(text='Счет в игре \U0001F4DF', callback_data='score'))
+        # keyboard.add(types.InlineKeyboardButton(text='Информацию по точкам \U0001F4E1', callback_data='point'))
+        keyboard.add(types.InlineKeyboardButton(text='Расписание игры \U0001F55B', callback_data='time'))
+        await message.answer(text='Что хочешь узнать, боец? \U0001F60E', reply_markup=keyboard)
 
 @dp.callback_query_handler(text='quests')
 async def select_quests_list(call: types.CallbackQuery):

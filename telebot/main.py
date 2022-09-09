@@ -90,6 +90,19 @@ async def reg_msg(message: types.Message):
     await message.answer(text)
 
 
+@dp.message_handler(commands='фа4707')
+async def reg_msg(message: types.Message):
+    """blue point spec quest"""
+    text = QuestsDb().select_text_for_nrf_quest(1, int(message.text[3:]))
+    await message.answer(text)
+
+@dp.message_handler(commands='ми3241')
+async def reg_msg(message: types.Message):
+    """yellow point spec quest"""
+    text = QuestsDb().select_text_for_nrf_quest(2, int(message.text[3:]))
+    await message.answer(text)
+
+
 @dp.message_handler(commands='act')
 async def reg_msg(message: types.Message):
     """start dialog for activation quest"""
@@ -165,14 +178,16 @@ async def reg_msg(message: types.Message):
 #     await call.message.answer(data)
 
 
-@dp.message_handler(commands='вата')
+@dp.message_handler(commands='ват')
 async def test_msg(message: types.Message):
+    """Bue quests"""
     data = ActQuestsDb().select_quest_list_from_db(side=1)
     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
     await message.answer(data)
 
 @dp.message_handler(commands='мир')
 async def test_msg(message: types.Message):
+    """Yellow quests"""
     data = ActQuestsDb().select_quest_list_from_db(side=2)
     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
     await message.answer(data)

@@ -1,2 +1,6 @@
-a = 'фа5083'
-print(int(a[2:]))
+"""
+Rota = False
+Vzvod = False
+Team = False
+Text
+"""

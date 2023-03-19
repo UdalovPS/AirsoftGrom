@@ -78,7 +78,7 @@ class MainClass(QtWidgets.QMainWindow):
                           'p5_blue INTEGER, p5_yellow INTEGER'
         self.sql_blue_fields_list = ('p1_blue', 'p2_blue',
                                      'p3_blue', 'p4_blue',
-                                     'p5_blue' )
+                                     'p5_blue')
 
         self.sql_yellow_fields_list = ('p1_yellow', 'p2_yellow',
                                       'p3_yellow', 'p4_yellow',
